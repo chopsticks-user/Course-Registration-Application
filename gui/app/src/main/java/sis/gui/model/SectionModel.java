@@ -1,7 +1,5 @@
 package sis.gui.model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -43,5 +41,53 @@ public class SectionModel {
 
     public void bindCredits(StringProperty creditsProperty) {
         this.creditsProperty.bindBidirectional(creditsProperty);
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructorProperty.set(instructor);
+    }
+
+    public void bindInstructor(StringProperty instructorProperty) {
+        this.instructorProperty.bindBidirectional(instructorProperty);
+    }
+
+    public void setTimes(String times) {
+        this.timesProperty.set(times);
+    }
+
+    public void bindTimes(StringProperty timesProperty) {
+        this.timesProperty.bindBidirectional(timesProperty);
+    }
+
+    public void setLocation(String location) {
+        this.locationProperty.set(location);
+    }
+
+    public void bindLocation(StringProperty locationProperty) {
+        this.locationProperty.bindBidirectional(locationProperty);
+    }
+
+    public void setWaitListInfo(String waitListInfo) {
+        this.waitListInfoProperty.set(waitListInfo);
+    }
+
+    public void bindWaitListInfo(StringProperty waitListInfoProperty) {
+        this.waitListInfoProperty.bindBidirectional(waitListInfoProperty);
+    }
+
+    public void setEnrollmentInfo(String enrollmentInfo) {
+        this.enrollmentInfoProperty.set(enrollmentInfo);
+    }
+
+    public void bindEnrollmentInfo(StringProperty enrollmentInfoProperty) {
+        this.enrollmentInfoProperty.bindBidirectional(enrollmentInfoProperty);
+    }
+
+    public void setStatus(String status) {
+        this.statusProperty.set(status);
+    }
+
+    public void bindStatus(StringProperty statusProperty) {
+        this.statusProperty.bindBidirectional(statusProperty);
     }
 }

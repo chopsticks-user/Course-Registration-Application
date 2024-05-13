@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 import sis.gui.model.SectionModel;
 
-public class LoginController {
+public class LogInRegionController {
     SectionModel sectionModel = new SectionModel();
     int i = 0;
 
