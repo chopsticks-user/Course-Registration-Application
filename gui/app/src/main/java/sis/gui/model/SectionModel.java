@@ -25,7 +25,8 @@ public class SectionModel {
     }
 
     public void bindNumber(StringProperty numberProperty) {
-        this.numberProperty.bind(numberProperty);
+        // numberProperty.bind(this.numberProperty);
+        this.numberProperty.bindBidirectional(numberProperty);
     }
 
     public void setType(String type) {
@@ -33,7 +34,7 @@ public class SectionModel {
     }
 
     public void bindType(StringProperty typeProperty) {
-        this.typeProperty = typeProperty;
+        this.typeProperty.bindBidirectional(typeProperty);
     }
 
     public void setCredits(String credits) {
@@ -41,6 +42,6 @@ public class SectionModel {
     }
 
     public void bindCredits(StringProperty creditsProperty) {
-        this.creditsProperty.bind(creditsProperty);
+        this.creditsProperty.bindBidirectional(creditsProperty);
     }
 }

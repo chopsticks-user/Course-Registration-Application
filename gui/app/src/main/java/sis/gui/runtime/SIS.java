@@ -4,6 +4,8 @@
 package sis.gui.runtime;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,7 +22,17 @@ public class SIS extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("Course Registration");
-        stage.setScene(new Scene(new VBox(), 400.0, 300.0));
-        stage.show();
+
+        try {
+            var scene = new Scene(FXMLLoader.load(
+                    SIS.class.getResource("../view/login-screen-view.fxml")),
+                    1280, 720);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.err.println(e);
+            System.out.println(SIS.class.getResource("../view/login-screen-view.fxml"));
+        }
+
     }
 }
