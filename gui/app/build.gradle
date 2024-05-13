@@ -46,7 +46,7 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     manifest {
-        attributes 'Main-Class': 'sis.gui.runtime.SIS'
+        attributes 'Main-Class': 'sis.gui.runtime.GUI'
     }
 
     from {
@@ -58,7 +58,7 @@ jar {
 
 application {
     // Define the main class for the application.
-    mainClass = 'sis.gui.runtime.SIS'
+    mainClass = 'sis.gui.runtime.GUI'
 }
 
 tasks.named('test') {

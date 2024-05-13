@@ -1,15 +1,16 @@
 package sis.gui.view;
 
 import javafx.scene.Scene;
-import javafx.util.Builder;
 import sis.gui.model.LogInInfoModel;
 import sis.gui.util.ViewBuilder;
 
-public class LogInSceneBuilder implements ViewBuilder<Scene> {
+public class LogInViewBuilder implements ViewBuilder<Scene> {
     LogInRegionBuilder logInRegionBuilder;
+    LogInBackgroundBuilder logInBackgroundBuilder;
 
-    public LogInSceneBuilder(LogInInfoModel logInInfoModel) {
+    public LogInViewBuilder(LogInInfoModel logInInfoModel) {
         logInRegionBuilder = new LogInRegionBuilder(logInInfoModel);
+        logInBackgroundBuilder = new LogInBackgroundBuilder();
     }
 
     @Override
