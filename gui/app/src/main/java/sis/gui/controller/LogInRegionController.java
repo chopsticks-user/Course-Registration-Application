@@ -2,12 +2,13 @@ package sis.gui.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sis.gui.model.LoginInfoModel;
+import sis.gui.interactor.LoginInteractor;
 
 public class LogInRegionController {
-    LoginInfoModel loginInfoModel;
+    LoginInteractor loginInteractor;
 
     @FXML
     TextField usernameField;
@@ -15,18 +16,24 @@ public class LogInRegionController {
     @FXML
     PasswordField passwordField;
 
+    @FXML
+    Label messageLabel;
+
     public void initialize() {
-        loginInfoModel = new LoginInfoModel();
         Platform.runLater(() -> {
-            loginInfoModel.bindUsername(usernameField.textProperty());
-            loginInfoModel.bindPassword(passwordField.textProperty());
+            loginInteractor = new LoginInteractor(
+                    usernameField.textProperty(), passwordField.textProperty());
         });
     }
 
     @FXML
     public void handleSignInButton() {
-        System.out.println(loginInfoModel.getUsername());
-        System.out.println(loginInfoModel.getPassword());
+        try {
+            loginInteractor.verify();
+            messageLabel.setText("Success! You are now logged in");
+        } catch (Exception e) {
+            messageLabel.setText(e.getMessage());
+        }
     }
 
     @FXML

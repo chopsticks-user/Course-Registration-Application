@@ -3,11 +3,11 @@ package sis.gui.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class LoginInfoModel {
+public class LoginModel {
     StringProperty usernameProperty = new SimpleStringProperty("");
     StringProperty passwordProperty = new SimpleStringProperty("");
 
-    public LoginInfoModel() {
+    public LoginModel() {
     }
 
     public void setUsername(String username) {
