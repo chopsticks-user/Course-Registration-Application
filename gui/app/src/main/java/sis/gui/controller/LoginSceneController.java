@@ -8,6 +8,5 @@ public class LoginSceneController {
     Node loginRegion;
 
     public void initialize() {
-        System.out.println("LoginSceneController::initialize");
     }
 }

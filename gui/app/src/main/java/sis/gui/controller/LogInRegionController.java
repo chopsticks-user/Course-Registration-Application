@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sis.gui.domain.Login;
 import sis.gui.interactor.LoginInteractor;
-import sis.gui.util.Serialize;
 
 public class LogInRegionController {
     LoginInteractor loginInteractor;

@@ -2,6 +2,7 @@ package sis.gui.interactor;
 
 import javafx.beans.property.StringProperty;
 import sis.gui.dao.LoginDAO;
+import sis.gui.domain.Login;
 import sis.gui.model.LoginModel;
 
 public class LoginInteractor {
@@ -18,7 +19,7 @@ public class LoginInteractor {
     }
 
     public void verify() throws Exception {
-        loginDAO.verify(loginInfoModel.getUsername(),
-                loginInfoModel.getPassword());
+        loginDAO.verify(new Login(loginInfoModel.getUsername(),
+                loginInfoModel.getPassword()));
     }
 }
