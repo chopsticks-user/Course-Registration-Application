@@ -1,8 +1,6 @@
 package sis.gui.interactor;
 
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import sis.gui.dao.LoginDAO;
 import sis.gui.model.LoginModel;
 

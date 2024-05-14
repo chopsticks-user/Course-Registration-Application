@@ -22,5 +22,5 @@
         <Label text="or create a new account" />
         <Button onAction="#handleSignUpButton" text="Sign up"/>
     </VBox>
-    <Label fx:id="messageLabel" style="-fx-text-fill: red;"/>
+    <Label fx:id="messageLabel" styleClass="message-label"/>
 </VBox>

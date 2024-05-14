@@ -5,3 +5,7 @@
 .login-region {
     -fx-background-color: lightyellow;
 }
+
+.message-label {
+    -fx-text-fill: red;
+}
