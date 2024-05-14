@@ -2,24 +2,34 @@ package sis.gui.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
-import sis.gui.model.SectionModel;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import sis.gui.model.LoginInfoModel;
 
 public class LogInRegionController {
-    SectionModel sectionModel = new SectionModel();
-    int i = 0;
+    LoginInfoModel loginInfoModel;
 
     @FXML
-    Text test;
+    TextField usernameField;
+
+    @FXML
+    PasswordField passwordField;
+
+    public void initialize() {
+        loginInfoModel = new LoginInfoModel();
+        Platform.runLater(() -> {
+            loginInfoModel.bindUsername(usernameField.textProperty());
+            loginInfoModel.bindPassword(passwordField.textProperty());
+        });
+    }
 
     @FXML
     public void handleSignInButton() {
-        sectionModel.bindNumber(test.textProperty());
-        sectionModel.setNumber(String.valueOf(++i));
+        System.out.println(loginInfoModel.getUsername());
+        System.out.println(loginInfoModel.getPassword());
     }
 
     @FXML
     public void handleSignUpButton() {
-        sectionModel.setNumber(String.valueOf(--i));
     }
 }
