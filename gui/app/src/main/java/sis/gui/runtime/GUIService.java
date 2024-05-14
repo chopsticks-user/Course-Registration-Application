@@ -7,9 +7,15 @@ import javafx.stage.Stage;
 public class GUIService {
     public static void start(Stage stage) throws Exception {
         stage.setTitle("Course Registration");
-        stage.setScene(new Scene(FXMLLoader.load(
-                GUIService.class.getResource("../view/login/login-region.fxml")),
-                1280, 720));
+
+        var scene = new Scene(FXMLLoader.load(
+                GUIService.class.getResource("../view/login/login-scene.fxml")),
+                1280, 720);
+        scene.getStylesheets().add(
+                GUIService.class.getResource("../view/login/login.css")
+                        .toExternalForm());
+
+        stage.setScene(scene);
         stage.show();
     }
 }

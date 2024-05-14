@@ -5,20 +5,22 @@
 <?import javafx.scene.text.Text?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.9" 
-      xmlns:fx="http://javafx.com/fxml/1" 
-      alignment="CENTER" spacing="10"
-      fx:controller = "sis.gui.controller.LogInRegionController">
-    <Label text="Sign in" style="-fx-font-size: 18px;"/>
+    xmlns:fx="http://javafx.com/fxml/1" 
+    alignment="CENTER" spacing="10" 
+    maxHeight="400.0" maxWidth="300.0"
+    styleClass="login-region"
+    fx:controller = "sis.gui.controller.LogInRegionController">
+    <Label text="Sign in"/>
     <HBox prefWidth="100.0" alignment="CENTER">
-      <TextField fx:id="usernameField" promptText="Username"/>
+        <TextField fx:id="usernameField" promptText="Username"/>
     </HBox>
     <HBox prefWidth="100.0" alignment="CENTER">
-      <PasswordField fx:id="passwordField" promptText="Password"/>
+        <PasswordField fx:id="passwordField" promptText="Password"/>
     </HBox>
     <Button onAction="#handleSignInButton" text="Sign in"/>
     <VBox alignment="CENTER" spacing="10">
-      <Label text="or create a new account" />
-      <Button onAction="#handleSignUpButton" text="Sign up"/>
+        <Label text="or create a new account" />
+        <Button onAction="#handleSignUpButton" text="Sign up"/>
     </VBox>
     <Label fx:id="messageLabel" style="-fx-text-fill: red;"/>
 </VBox>
