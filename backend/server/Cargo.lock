@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "backend_server"
+name = "sis_backend_server"
 version = "0.1.0"
