@@ -12,23 +12,18 @@ func userLoginPost(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewDecoder(r.Body).Decode(&login)
 	if err != nil {
-		http.Error(w, "Failed to parse JSON request body", http.StatusBadRequest)
+		http.Error(w, "failed to parse JSON request body", http.StatusBadRequest)
 		return
 	}
 
-	if !login.ValidUsername() {
-		http.Error(w, "Invalid username", http.StatusBadRequest)
-		return
-	}
-
-	if !login.ValidPassword() {
-		http.Error(w, "Invalid password", http.StatusBadRequest)
+	err = login.Validate()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	var responseData models.LoginResponse
 	responseData.Token = login.Username
-
 	json, err := json.Marshal(responseData)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
