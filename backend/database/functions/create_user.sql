@@ -1,0 +1,1 @@
+CREATE ROLE frost WITH LOGIN PASSWORD 'yourpassword';
