@@ -1,17 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
-	"sis/backend/api/common"
 	"sis/backend/api/routes"
 )
 
 func main() {
-	http.HandleFunc(common.URLWithPrefix("/user/login"), routes.UserLoginHandler)
-	http.HandleFunc(common.URLWithPrefix("/course/"), routes.CoursesHandler)
+	log.Println("Starting server on port :8080")
+	server := http.Server{Addr: ":8080", Handler: routes.Router}
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		fmt.Println("Error encountered while starting Go API at port 8080:", err)
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Println("Failed to start server on port :8080")
 	}
 }

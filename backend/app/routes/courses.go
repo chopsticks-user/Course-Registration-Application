@@ -2,7 +2,6 @@ package routes
 
 import "net/http"
 
-func coursesPost(w http.ResponseWriter, r *http.Request) {}
+func init() {}
 
-func CoursesHandler(w http.ResponseWriter, r *http.Request) {
-}
+func CoursesPost(w http.ResponseWriter, r *http.Request) {}
