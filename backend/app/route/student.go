@@ -3,26 +3,36 @@ package route
 import (
 	"encoding/json"
 	"net/http"
+	"sis/backend/api/data"
 	"sis/backend/api/model"
 	"sis/backend/api/service"
 )
 
 func studentLoginPost(w http.ResponseWriter, r *http.Request) {
-	var login model.Student
+	var student model.Student
 
-	err := json.NewDecoder(r.Body).Decode(&login)
+	err := json.NewDecoder(r.Body).Decode(&student)
 	if err != nil {
 		http.Error(w, "failed to parse JSON request body", http.StatusBadRequest)
 		return
 	}
 
-	err = login.Validate()
+	err = student.Validate()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	token, err := service.GenerateToken(login.Username, login.Email)
+	password, err := data.FetchPasswordFromUsername(student.Username)
+	if err != nil || password != student.Password {
+		password, err := data.FetchPasswordFromEmail(student.Email)
+		if err != nil || password != student.Password {
+			http.Error(w, "Authentication failed", http.StatusBadRequest)
+			return
+		}
+	}
+
+	token, err := service.GenerateToken(student.Username, student.Email)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -45,7 +55,7 @@ func studentSignupPost(w http.ResponseWriter, r *http.Request) {
 }
 
 func init() {
-	exportHandler("POST", "/student/login", studentLoginPost)
-	exportHandler("DELETE", "/student/login", studentLoginDelete)
-	exportHandler("POST", "/student/signup", studentSignupPost)
+	exportHandler("POST /student/login", studentLoginPost)
+	exportHandler("DELETE /student/login", studentLoginDelete)
+	exportHandler("POST /student/signup", studentSignupPost)
 }

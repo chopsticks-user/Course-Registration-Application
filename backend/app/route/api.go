@@ -9,17 +9,23 @@ var apiRoutePrefix = "/api/v1"
 var router = http.NewServeMux()
 var Handler http.Handler
 
-func exportHandler(method string, route string,
+func exportHandler(
+	parttern string,
 	handler func(http.ResponseWriter, *http.Request),
 	middlewares ...middleware.Middleware) {
-	router.Handle(method+" "+apiRoutePrefix+route,
+	router.Handle(parttern,
 		middleware.CreateStack(middlewares...)(http.HandlerFunc(handler)))
 }
 
-func defaultMiddlewares() http.Handler {
-	return middleware.CreateStack(middleware.Logging)(router)
+func initDefaultMiddlewares() {
+	Handler = middleware.CreateStack(middleware.Logging)(router)
+}
+
+func stripAPIRoutePrefix() {
+	router.Handle(apiRoutePrefix+"/", http.StripPrefix(apiRoutePrefix, router))
 }
 
 func init() {
-	Handler = defaultMiddlewares()
+	stripAPIRoutePrefix()
+	initDefaultMiddlewares()
 }

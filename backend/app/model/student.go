@@ -15,12 +15,10 @@ type Student struct {
 func (s Student) Validate() error {
 	err := validateUsername(s.Username)
 	if err != nil {
-		return err
-	}
-
-	err = validateEmail(s.Email)
-	if err != nil {
-		return err
+		err = validateEmail(s.Email)
+		if err != nil {
+			return err
+		}
 	}
 
 	err = validatePassword(s.Password)
@@ -56,9 +54,9 @@ func validateEmail(s string) error {
 }
 
 func validatePassword(s string) error {
-	if len(s) < 12 {
-		return errors.New("password must contains at least 12 characters")
-	}
+	// if len(s) < 12 {
+	// 	return errors.New("password must contains at least 12 characters")
+	// }
 
 	for _, c := range s {
 		if !unicode.IsDigit(c) && !unicode.IsLetter(c) && !supportedSymbols(c) {

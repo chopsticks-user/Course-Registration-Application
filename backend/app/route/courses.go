@@ -4,4 +4,4 @@ import "net/http"
 
 func init() {}
 
-func CoursesPost(w http.ResponseWriter, r *http.Request) {}
+func coursesPost(w http.ResponseWriter, r *http.Request) {}
