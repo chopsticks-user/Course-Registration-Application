@@ -1,4 +1,4 @@
-package models
+package model
 
 import (
 	"errors"
@@ -6,13 +6,13 @@ import (
 	"unicode"
 )
 
-type StudentModel struct {
+type Student struct {
 	Username string `json:"username"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
 
-func (s StudentModel) Validate() error {
+func (s Student) Validate() error {
 	err := validateUsername(s.Username)
 	if err != nil {
 		return err

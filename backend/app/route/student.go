@@ -1,14 +1,14 @@
-package routes
+package route
 
 import (
 	"encoding/json"
 	"net/http"
-	"sis/backend/api/models"
-	"sis/backend/api/services"
+	"sis/backend/api/model"
+	"sis/backend/api/service"
 )
 
 func studentLoginPost(w http.ResponseWriter, r *http.Request) {
-	var login models.StudentModel
+	var login model.Student
 
 	err := json.NewDecoder(r.Body).Decode(&login)
 	if err != nil {
@@ -22,7 +22,7 @@ func studentLoginPost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token, err := services.GenerateToken(login.Username, login.Email)
+	token, err := service.GenerateToken(login.Username, login.Email)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -41,7 +41,11 @@ func studentLoginPost(w http.ResponseWriter, r *http.Request) {
 func studentLoginDelete(w http.ResponseWriter, r *http.Request) {
 }
 
+func studentSignupPost(w http.ResponseWriter, r *http.Request) {
+}
+
 func init() {
-	exportHandler("POST", "/user/login", studentLoginPost)
-	exportHandler("DELETE", "/user/login", studentLoginDelete)
+	exportHandler("POST", "/student/login", studentLoginPost)
+	exportHandler("DELETE", "/student/login", studentLoginDelete)
+	exportHandler("POST", "/student/signup", studentSignupPost)
 }
