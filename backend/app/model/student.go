@@ -1,4 +1,4 @@
-package models
+package model
 
 import (
 	"errors"
@@ -6,15 +6,19 @@ import (
 	"unicode"
 )
 
-type Login struct {
+type Student struct {
 	Username string `json:"username"`
+	Email    string `json:"email"`
 	Password string `json:"password"`
 }
 
-func (s Login) Validate() error {
+func (s Student) Validate() error {
 	err := validateUsername(s.Username)
 	if err != nil {
-		return err
+		err = validateEmail(s.Email)
+		if err != nil {
+			return err
+		}
 	}
 
 	err = validatePassword(s.Password)
@@ -23,29 +27,6 @@ func (s Login) Validate() error {
 	}
 
 	return nil
-}
-
-type Signup struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
-
-func (s Signup) Validate() error {
-	err := validateUsername(s.Username)
-	if err != nil {
-		return err
-	}
-
-	err = validatePassword(s.Password)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-type LoginResponse struct {
-	Token string `json:"token"`
 }
 
 func validateUsername(s string) error {
@@ -68,10 +49,14 @@ func validateUsername(s string) error {
 	return nil
 }
 
+func validateEmail(s string) error {
+	return nil
+}
+
 func validatePassword(s string) error {
-	if len(s) < 12 {
-		return errors.New("password must contains at least 12 characters")
-	}
+	// if len(s) < 12 {
+	// 	return errors.New("password must contains at least 12 characters")
+	// }
 
 	for _, c := range s {
 		if !unicode.IsDigit(c) && !unicode.IsLetter(c) && !supportedSymbols(c) {
